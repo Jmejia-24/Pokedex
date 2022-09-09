@@ -14,7 +14,9 @@ final class PokemonListCoordinator: Coordinator {
     weak var transitionDelegate: TransitionDelegate?
     
     private lazy var primaryViewController: UIViewController = {
-        let viewController = PokemonListViewController()
+        let viewModel = PokemonListViewModel()
+        viewModel.transitionDelegate = transitionDelegate
+        let viewController = PokemonListViewController(viewModel: viewModel)
         return viewController
     }()
     
