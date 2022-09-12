@@ -8,7 +8,8 @@
 import UIKit
 
 final class AppRouter {
-    private var coordinatorRegister: [Transition: Coordinator] = [.showMainScreen: PokemonListCoordinator()]
+    private var coordinatorRegister: [Transition: Coordinator] = [.showMainScreen: PokemonListCoordinator(),
+                                                                  .showPokemonDetail: PokemonDetailCoordinator()]
     let navigationViewController = UINavigationController()
 
     func start() {

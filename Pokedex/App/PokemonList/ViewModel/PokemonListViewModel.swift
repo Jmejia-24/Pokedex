@@ -67,4 +67,8 @@ final class PokemonListViewModel {
             loadData(offset: pokemonAlreadyLoaded)
         }
     }
+    
+    func didTapItem(model: Pokemon) {
+        transitionDelegate?.process(transition: .showPokemonDetail, with: model)
+    }
 }

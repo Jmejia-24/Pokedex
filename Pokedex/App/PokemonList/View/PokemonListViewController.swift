@@ -84,6 +84,12 @@ final class PokemonListViewController: UITableViewController {
         Section.allCases.forEach { snapshot.appendItems(pokemons, toSection: $0) }
         dataSource.apply(snapshot)
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let pokemon = dataSource.itemIdentifier(for: indexPath) else { return }
+        viewModel.didTapItem(model: pokemon)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension PokemonListViewController: UITableViewDataSourcePrefetching {
