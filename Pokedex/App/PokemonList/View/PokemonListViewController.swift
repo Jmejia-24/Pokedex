@@ -46,10 +46,10 @@ final class PokemonListViewController: UITableViewController {
         tableView.rowHeight = 40
         viewModel.loadData()
         tableView.prefetchDataSource = self
+        configureSearchController()
     }
     
     private func bindUI() {
-        
         subscription = viewModel.pokemonListSubject.sink { [unowned self] completion in
             switch completion {
                 case .finished:
@@ -60,6 +60,15 @@ final class PokemonListViewController: UITableViewController {
         } receiveValue: { [unowned self] pokemons in
             applySnapshot(pokemons: pokemons)
         }
+    }
+    
+    private func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = localizedString(.searchField)
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     // MARK: Diffable data source
@@ -95,5 +104,28 @@ final class PokemonListViewController: UITableViewController {
 extension PokemonListViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         viewModel.prefetchData(for: indexPaths)
+    }
+}
+
+extension PokemonListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        viewModel.searchPokemon(with: searchController.searchBar.text)
+    }
+}
+
+extension PokemonListViewController: Localization {
+    
+    func localizedString(_ key: LocalizationPropertiesKey) -> String {
+        return key.localizedString
+    }
+    
+    enum LocalizationPropertiesKey {
+        case searchField
+        
+        var localizedString: String {
+            switch self {
+                case .searchField: return NSLocalizedString("Search Pokemon", comment: "Placeholder text in searchbar homescreen")
+            }
+        }
     }
 }
