@@ -31,7 +31,7 @@ final class PokemonListViewModel {
         let recievedPokemons = { [unowned self] (newPokemonBase: AllPokemonBase) -> Void in
             fetchedBase = newPokemonBase
             DispatchQueue.main.async {
-                fetchedPokemon.append(contentsOf: newPokemonBase.results)
+                self.fetchedPokemon.append(contentsOf: newPokemonBase.results)
             }
         }
         

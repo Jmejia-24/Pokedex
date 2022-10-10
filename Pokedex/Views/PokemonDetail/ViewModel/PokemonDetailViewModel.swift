@@ -26,7 +26,7 @@ final class PokemonDetailViewModel {
 
         let recievedPokemons = { [unowned self] (fetchedPokemonDetails: PokemonDetailBase) -> Void in
             DispatchQueue.main.async {
-                pokemonDetailSubject.send(fetchedPokemonDetails)
+                self.pokemonDetailSubject.send(fetchedPokemonDetails)
             }
         }
         

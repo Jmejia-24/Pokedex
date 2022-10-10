@@ -50,7 +50,6 @@
 		306714FC28CFB70000C2347E /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 306714FB28CFB70000C2347E /* SDWebImageMapKit */; };
 		3082688828D10C9100406635 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082688728D10C9100406635 /* Localization.swift */; };
 		30FDE9C128CA3EC9006506E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9C028CA3EC9006506E2 /* AppDelegate.swift */; };
-		30FDE9C528CA3EC9006506E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9C428CA3EC9006506E2 /* ViewController.swift */; };
 		30FDE9CA28CA3ECB006506E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30FDE9C928CA3ECB006506E2 /* Assets.xcassets */; };
 		30FDE9CD28CA3ECB006506E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FDE9CB28CA3ECB006506E2 /* LaunchScreen.storyboard */; };
 		30FDE9D828CA5302006506E2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9D728CA5302006506E2 /* Coordinator.swift */; };
@@ -113,7 +112,6 @@
 		3082688728D10C9100406635 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		30FDE9BD28CA3EC9006506E2 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FDE9C028CA3EC9006506E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		30FDE9C428CA3EC9006506E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		30FDE9C928CA3ECB006506E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30FDE9CC28CA3ECB006506E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30FDE9CE28CA3ECB006506E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -234,10 +232,11 @@
 		30FDE9BF28CA3EC9006506E2 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				30FDE9D628CA52D0006506E2 /* Protocols */,
+				30FDE9D528CA528D006506E2 /* Helpers */,
 				30FDE9E928CA71C3006506E2 /* Networking */,
-				30FDE9D428CA5273006506E2 /* App */,
+				30FDE9D428CA5273006506E2 /* Views */,
 				30FDE9C028CA3EC9006506E2 /* AppDelegate.swift */,
-				30FDE9C428CA3EC9006506E2 /* ViewController.swift */,
 				30FDE9C928CA3ECB006506E2 /* Assets.xcassets */,
 				30FDE9CB28CA3ECB006506E2 /* LaunchScreen.storyboard */,
 				30FDE9CE28CA3ECB006506E2 /* Info.plist */,
@@ -245,21 +244,19 @@
 			path = Pokedex;
 			sourceTree = "<group>";
 		};
-		30FDE9D428CA5273006506E2 /* App */ = {
+		30FDE9D428CA5273006506E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				30A9671828CBFB13006EA4D1 /* PokemonDetail */,
 				30FDE9DD28CA5406006506E2 /* PokemonList */,
-				30FDE9D528CA528D006506E2 /* Helpers */,
 			);
-			path = App;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		30FDE9D528CA528D006506E2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				30FDE9FD28CA7631006506E2 /* Extensions */,
-				30FDE9D628CA52D0006506E2 /* Protocols */,
 				30FDE9D928CA533D006506E2 /* Transition.swift */,
 				30FDE9DB28CA5398006506E2 /* AppRouter.swift */,
 			);
@@ -466,7 +463,6 @@
 				306714CB28CFB0AA00C2347E /* Yellow.swift in Sources */,
 				306714E328CFB0AB00C2347E /* Platinum.swift in Sources */,
 				306714F128CFB53C00C2347E /* PokemonDetailView.swift in Sources */,
-				30FDE9C528CA3EC9006506E2 /* ViewController.swift in Sources */,
 				306714CC28CFB0AA00C2347E /* Silver.swift in Sources */,
 				306714DE28CFB0AB00C2347E /* Stat.swift in Sources */,
 				306714E928CFB0AB00C2347E /* Generation.swift in Sources */,
