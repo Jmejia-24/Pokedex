@@ -8,13 +8,13 @@
 import UIKit
 import Combine
 
-final class PokemonListViewController: UITableViewController {
+final class PokemonListViewController: UICollectionViewController {
     
     private enum Section: CaseIterable {
         case main
     }
     
-    private typealias DataSource = UITableViewDiffableDataSource<Section, Pokemon>
+    private typealias DataSource = UICollectionViewDiffableDataSource<Section, Pokemon>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Pokemon>
     
     private var subscription: AnyCancellable?
@@ -23,7 +23,7 @@ final class PokemonListViewController: UITableViewController {
     
     init(viewModel: PokemonListViewModelRepresentable) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init(collectionViewLayout: PokemonListViewController.generateLayout())
     }
     
     required init?(coder: NSCoder) {
@@ -38,15 +38,19 @@ final class PokemonListViewController: UITableViewController {
         bindUI()
     }
     
+    static private func generateLayout() -> UICollectionViewCompositionalLayout {
+        let layoutConfig = UICollectionLayoutListConfiguration(appearance: .plain)
+        return UICollectionViewCompositionalLayout.list(using: layoutConfig)
+    }
+    
     // MARK: - Private methods
     
     private func setUI() {
         view.backgroundColor = .white
         title = "Pokemons"
-        tableView.rowHeight = 40
         viewModel.loadData(0)
-        tableView.prefetchDataSource = self
         configureSearchController()
+        collectionView.prefetchDataSource = self
     }
     
     private func bindUI() {
@@ -73,16 +77,17 @@ final class PokemonListViewController: UITableViewController {
     
     // MARK: Diffable data source
     
+    private let registerPokemonCell = UICollectionView.CellRegistration<UICollectionViewListCell, Pokemon> { cell, indexPath, pokemon in
+        var configuration = cell.defaultContentConfiguration()
+        configuration.text = pokemon.name.capitalized
+        
+        cell.contentConfiguration = configuration
+    }
+    
     private lazy var dataSource: DataSource = {
-        let dataSource = DataSource(tableView: tableView) { [unowned self] _, _, pokemon -> UITableViewCell in
-            
-            let cell = UITableViewCell()
-            var configuration = cell.defaultContentConfiguration()
-            
-            configuration.text = pokemon.name.capitalized
-            cell.contentConfiguration = configuration
-            
-            return cell
+        let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, item -> UICollectionViewCell in
+            let configType = self.registerPokemonCell
+            return collectionView.dequeueConfiguredReusableCell(using: configType, for: indexPath, item: item)
         }
         return dataSource
     }()
@@ -94,15 +99,14 @@ final class PokemonListViewController: UITableViewController {
         dataSource.apply(snapshot)
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let pokemon = dataSource.itemIdentifier(for: indexPath) else { return }
         viewModel.didTapItem(model: pokemon)
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-extension PokemonListViewController: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+extension PokemonListViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         viewModel.prefetchData(for: indexPaths)
     }
 }
