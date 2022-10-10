@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 final class PokemonDetailView: UIView {
     
@@ -97,11 +96,8 @@ final class PokemonDetailView: UIView {
         abilitiesDescription.setText(abilities)
         formDescription.setText(forms)
         
-        if let url = URL(string: detail?.sprites?.other?.officialArtwork?.frontDefault ?? "") {
-            imageView.sd_setImage(with: url,
-                                  placeholderImage: #imageLiteral(resourceName: "PlaceHolderImage"),
-                                  options: .retryFailed,
-                                  context: nil)
+        Task {
+            imageView.image = await ImageCacheStore.shared.getCacheImage(for: detail?.sprites?.other?.officialArtwork?.frontDefault)
         }
     }
 }
