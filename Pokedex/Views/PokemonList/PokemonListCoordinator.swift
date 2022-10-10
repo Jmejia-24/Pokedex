@@ -7,23 +7,23 @@
 
 import UIKit
 
-final class PokemonListCoordinator: Coordinator {
-
-    var model: Any?
-    var navigationController: UINavigationController?
-    weak var transitionDelegate: TransitionDelegate?
+final class PokemonListCoordinator<R: AppRouter> {
+    let router: R
     
     private lazy var primaryViewController: UIViewController = {
-        let viewModel = PokemonListViewModel()
-        viewModel.transitionDelegate = transitionDelegate
+        let viewModel = PokemonListViewModel<R>()
+        viewModel.router = router
         let viewController = PokemonListViewController(viewModel: viewModel)
         return viewController
     }()
     
+    init(router: R) {
+        self.router = router
+    }
+}
+
+extension PokemonListCoordinator: Coordinator {
     func start() {
-        if navigationController?.viewControllers.isEmpty == false {
-            navigationController?.popToRootViewController(animated: true)
-        }
-        navigationController?.pushViewController(primaryViewController, animated: false)
+        router.navigationController.pushViewController(primaryViewController, animated: false)
     }
 }

@@ -53,8 +53,6 @@
 		30FDE9CA28CA3ECB006506E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30FDE9C928CA3ECB006506E2 /* Assets.xcassets */; };
 		30FDE9CD28CA3ECB006506E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FDE9CB28CA3ECB006506E2 /* LaunchScreen.storyboard */; };
 		30FDE9D828CA5302006506E2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9D728CA5302006506E2 /* Coordinator.swift */; };
-		30FDE9DA28CA533D006506E2 /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9D928CA533D006506E2 /* Transition.swift */; };
-		30FDE9DC28CA5398006506E2 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9DB28CA5398006506E2 /* AppRouter.swift */; };
 		30FDE9DF28CA5454006506E2 /* PokemonListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9DE28CA5454006506E2 /* PokemonListCoordinator.swift */; };
 		30FDE9E328CA54DE006506E2 /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9E228CA54DE006506E2 /* PokemonListViewController.swift */; };
 		30FDE9E628CA714E006506E2 /* PokemonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9E528CA714D006506E2 /* PokemonList.swift */; };
@@ -67,6 +65,9 @@
 		30FDE9FA28CA74AB006506E2 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 30FDE9F928CA74AB006506E2 /* OrderedCollections */; };
 		30FDE9FC28CA74AB006506E2 /* PriorityQueueModule in Frameworks */ = {isa = PBXBuildFile; productRef = 30FDE9FB28CA74AB006506E2 /* PriorityQueueModule */; };
 		30FDE9FF28CA7652006506E2 /* UIAlertController+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE9FE28CA7652006506E2 /* UIAlertController+Builder.swift */; };
+		C8AD993A28F3A0130035A32A /* AppTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AD993928F3A0130035A32A /* AppTransition.swift */; };
+		C8AD993D28F3A0C40035A32A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AD993C28F3A0C40035A32A /* Router.swift */; };
+		C8AD993F28F3A1510035A32A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AD993E28F3A1510035A32A /* App.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,8 +117,6 @@
 		30FDE9CC28CA3ECB006506E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30FDE9CE28CA3ECB006506E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30FDE9D728CA5302006506E2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		30FDE9D928CA533D006506E2 /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
-		30FDE9DB28CA5398006506E2 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		30FDE9DE28CA5454006506E2 /* PokemonListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListCoordinator.swift; sourceTree = "<group>"; };
 		30FDE9E228CA54DE006506E2 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
 		30FDE9E528CA714D006506E2 /* PokemonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonList.swift; sourceTree = "<group>"; };
@@ -126,6 +125,9 @@
 		30FDE9EE28CA7388006506E2 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		30FDE9F228CA746B006506E2 /* PokemonListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewModel.swift; sourceTree = "<group>"; };
 		30FDE9FE28CA7652006506E2 /* UIAlertController+Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Builder.swift"; sourceTree = "<group>"; };
+		C8AD993928F3A0130035A32A /* AppTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTransition.swift; sourceTree = "<group>"; };
+		C8AD993C28F3A0C40035A32A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		C8AD993E28F3A1510035A32A /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,8 @@
 				30FDE9E928CA71C3006506E2 /* Networking */,
 				30FDE9D428CA5273006506E2 /* Views */,
 				30FDE9C028CA3EC9006506E2 /* AppDelegate.swift */,
+				C8AD993928F3A0130035A32A /* AppTransition.swift */,
+				C8AD993E28F3A1510035A32A /* App.swift */,
 				30FDE9C928CA3ECB006506E2 /* Assets.xcassets */,
 				30FDE9CB28CA3ECB006506E2 /* LaunchScreen.storyboard */,
 				30FDE9CE28CA3ECB006506E2 /* Info.plist */,
@@ -257,8 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				30FDE9FD28CA7631006506E2 /* Extensions */,
-				30FDE9D928CA533D006506E2 /* Transition.swift */,
-				30FDE9DB28CA5398006506E2 /* AppRouter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -266,6 +268,7 @@
 		30FDE9D628CA52D0006506E2 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				C8AD993B28F3A0B00035A32A /* Routers */,
 				30FDE9D728CA5302006506E2 /* Coordinator.swift */,
 				306714F428CFB5D900C2347E /* ViewCodeProtocol.swift */,
 				3082688728D10C9100406635 /* Localization.swift */,
@@ -341,6 +344,14 @@
 				306714F628CFB62B00C2347E /* UIStackView+Spacing.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C8AD993B28F3A0B00035A32A /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				C8AD993C28F3A0C40035A32A /* Router.swift */,
+			);
+			path = Routers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +440,7 @@
 				306714CA28CFB0AA00C2347E /* VersionGroup.swift in Sources */,
 				306714D628CFB0AB00C2347E /* Stats.swift in Sources */,
 				306714E628CFB0AB00C2347E /* Forms.swift in Sources */,
+				C8AD993D28F3A0C40035A32A /* Router.swift in Sources */,
 				306714D928CFB0AB00C2347E /* Home.swift in Sources */,
 				306714EF28CFB4FD00C2347E /* PokemonDetailViewController.swift in Sources */,
 				30FDE9ED28CA7280006506E2 /* Failure.swift in Sources */,
@@ -436,7 +448,8 @@
 				306714ED28CFB49800C2347E /* PokemonDetailCoordinator.swift in Sources */,
 				306714D228CFB0AB00C2347E /* Emerald.swift in Sources */,
 				306714CF28CFB0AB00C2347E /* Animated.swift in Sources */,
-				30FDE9DA28CA533D006506E2 /* Transition.swift in Sources */,
+				C8AD993A28F3A0130035A32A /* AppTransition.swift in Sources */,
+				C8AD993F28F3A1510035A32A /* App.swift in Sources */,
 				306714DF28CFB0AB00C2347E /* Species.swift in Sources */,
 				30FDE9E628CA714E006506E2 /* PokemonList.swift in Sources */,
 				30FDE9D828CA5302006506E2 /* Coordinator.swift in Sources */,
@@ -455,7 +468,6 @@
 				30FDE9FF28CA7652006506E2 /* UIAlertController+Builder.swift in Sources */,
 				306714F728CFB62B00C2347E /* UIStackView+Spacing.swift in Sources */,
 				30FDE9EF28CA7388006506E2 /* APIManager.swift in Sources */,
-				30FDE9DC28CA5398006506E2 /* AppRouter.swift in Sources */,
 				306714F328CFB59500C2347E /* PokemonDetailDescriptionView.swift in Sources */,
 				306714DA28CFB0AB00C2347E /* Other.swift in Sources */,
 				30FDE9DF28CA5454006506E2 /* PokemonListCoordinator.swift in Sources */,

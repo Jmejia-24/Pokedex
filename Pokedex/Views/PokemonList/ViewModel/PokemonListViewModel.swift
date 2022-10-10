@@ -9,8 +9,16 @@ import UIKit
 import Combine
 import OrderedCollections
 
-final class PokemonListViewModel {
-    weak var transitionDelegate: TransitionDelegate?
+protocol PokemonListViewModelRepresentable {
+    func loadData(_ offset: Int)
+    func searchPokemon(with query: String?)
+    func prefetchData(for indexPaths: [IndexPath])
+    func didTapItem(model: Pokemon)
+    var pokemonListSubject: PassthroughSubject<[Pokemon], Failure> { get }
+}
+
+final class PokemonListViewModel<R: AppRouter> {
+    var router: R?
     let pokemonListSubject = PassthroughSubject<[Pokemon], Failure>()
     private var cancellables = Set<AnyCancellable>()
     private let store: PokemonListStore
@@ -26,8 +34,10 @@ final class PokemonListViewModel {
     init(store: PokemonListStore = APIManager()) {
         self.store = store
     }
-    
-    func loadData(offset: Int = 0) {
+}
+
+extension PokemonListViewModel: PokemonListViewModelRepresentable {
+    func loadData(_ offset: Int) {
         let recievedPokemons = { [unowned self] (newPokemonBase: AllPokemonBase) -> Void in
             fetchedBase = newPokemonBase
             DispatchQueue.main.async {
@@ -37,10 +47,10 @@ final class PokemonListViewModel {
         
         let completion = { [unowned self] (completion: Subscribers.Completion<Failure>) -> Void in
             switch  completion {
-                case .finished:
-                    break
-                case .failure(let failure):
-                    pokemonListSubject.send(completion: .failure(failure))
+            case .finished:
+                break
+            case .failure(let failure):
+                pokemonListSubject.send(completion: .failure(failure))
             }
         }
         
@@ -64,11 +74,11 @@ final class PokemonListViewModel {
         
         let pokemonAlreadyLoaded = fetchedPokemon.count
         if index > pokemonAlreadyLoaded - 10 {
-            loadData(offset: pokemonAlreadyLoaded)
+            loadData(pokemonAlreadyLoaded)
         }
     }
     
     func didTapItem(model: Pokemon) {
-        transitionDelegate?.process(transition: .showPokemonDetail, with: model)
+        router?.process(route: .showPokemonDetail(model: model))
     }
 }

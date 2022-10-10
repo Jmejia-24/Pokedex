@@ -18,10 +18,10 @@ final class PokemonListViewController: UITableViewController {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Pokemon>
     
     private var subscription: AnyCancellable?
-    private let viewModel: PokemonListViewModel
+    private let viewModel: PokemonListViewModelRepresentable
     private var searchController = UISearchController(searchResultsController: nil)
     
-    init(viewModel: PokemonListViewModel) {
+    init(viewModel: PokemonListViewModelRepresentable) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,7 +44,7 @@ final class PokemonListViewController: UITableViewController {
         view.backgroundColor = .white
         title = "Pokemons"
         tableView.rowHeight = 40
-        viewModel.loadData()
+        viewModel.loadData(0)
         tableView.prefetchDataSource = self
         configureSearchController()
     }
@@ -52,10 +52,10 @@ final class PokemonListViewController: UITableViewController {
     private func bindUI() {
         subscription = viewModel.pokemonListSubject.sink { [unowned self] completion in
             switch completion {
-                case .finished:
-                    print("Received completion in VC", completion)
-                case .failure(let error):
-                    presentAlert(with: error)
+            case .finished:
+                print("Received completion in VC", completion)
+            case .failure(let error):
+                presentAlert(with: error)
             }
         } receiveValue: { [unowned self] pokemons in
             applySnapshot(pokemons: pokemons)
@@ -124,7 +124,7 @@ extension PokemonListViewController: Localization {
         
         var localizedString: String {
             switch self {
-                case .searchField: return NSLocalizedString("Search Pokemon", comment: "Placeholder text in searchbar homescreen")
+            case .searchField: return NSLocalizedString("Search Pokemon", comment: "Placeholder text in searchbar homescreen")
             }
         }
     }
